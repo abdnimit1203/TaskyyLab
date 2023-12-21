@@ -76,6 +76,11 @@ app.get("/api/v1/tasks", async (req, res) => {
     const result = await tasksCollection.find(query).toArray();
     res.send(result);
   });
+app.post("/api/v1/tasks", async (req, res) => {
+    const task = req.body
+    const result = await tasksCollection.insertOne(task)
+    res.send(result);
+  });
 
 
 

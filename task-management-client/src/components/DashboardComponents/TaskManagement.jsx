@@ -1,37 +1,48 @@
 import { ImCross } from "react-icons/im";
 import { FaRegEdit } from "react-icons/fa";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const TaskManagement = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm()
-    
-      const onSubmit = async(data) =>{
-        
-        
-        console.log(data)
-    
-    //   try{
-    //     axiosPublic.post("/api/v1/tasks", taskInfo).then((res) => {
-    //         if (res.data?.insertedId) {
-    //           console.log("user added to the database");
-    //           toast.success(
-    //             "Account created successfully!",
+    const {user} = useAuth()
+    const axiosPublic = useAxiosPublic()
+  const {
+    register,
+    control,
+    reset,
+    handleSubmit,
 
-    //             { id: toastId }
-    //           ))
-    //   }catch(err){
-    //     toast.error(err.message);
-    //   }
-    // }
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+      const taskInfo = {...data, 
+        useremail: user?.email,
+        status: "todo"}
        
-      
+      try{
+        axiosPublic.post("/api/v1/tasks", taskInfo).then((res) => {
+            if (res.data?.insertedId) {
+              console.log("task created and addded to database");
+              toast.success(
+                "Task created successfully!",
+
+             
+              )
+              }
+              reset()
+            })
+              
+      }catch(err){
+        toast.error(err.message);
       }
+    }
   return (
     <div className="p-6 lg:p-10 lg:py-16 flex flex-col">
       <div className="flex justify-between bg-[#fff] glass rounded-xl p-3 items-center mb-4">
@@ -52,66 +63,99 @@ const TaskManagement = () => {
                 ✕
               </button>
             </form>
-            <h3 className=" text-xl text-center font-extrabold text-transparent  bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Create a new todo list</h3>
-            <form onSubmit={handleSubmit(onSubmit)} className="mt-8 grid grid-cols-6 gap-6 text-left justify-center items-center">
+            <h3 className=" text-xl text-center font-extrabold text-transparent  bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+              Create a new todo list
+            </h3>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="mt-8 grid grid-cols-6 gap-6 text-left justify-center items-center"
+            >
               <div className="col-span-6">
-                <label
-                  htmlFor="Title"
-                  className="block text-sm font-medium "
-                >
+                <label htmlFor="Title" className="block text-sm font-medium ">
                   Title
                 </label>
 
                 <input
-                  type="title"
+                  type="text"
                   id="Title"
                   name="title"
-                  {...register("title")}
+                  {...register("title", { required: true })}
                   className="mt-1 w-full border-2 rounded-md border-gray-200 focus:outline-2 px-3 bg-slate-100 focus:outline-slate-400 text-sm text-gray-700 py-3   shadow-inner"
                 />
+                {errors.title && (
+                  <span className="text-red-400">Title is required</span>
+                )}
               </div>
 
               <div className="col-span-6 relative">
                 <label
-                  htmlFor="Password"
-
+                  htmlFor="Description"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Password
+                  Description
                 </label>
 
-                <input
-                 type="password"
-                  id="Password"
-                  name="password"
-                  {...register("password", { required: true })}
-                  
+                <textarea
+                  type="text"
+                  id="Description"
+                  name="description"
+                  {...register("description", { required: true })}
                   className="mt-1 w-full border-2 rounded-md border-gray-200 focus:outline-2 px-3 bg-slate-100 focus:outline-slate-400 text-sm text-gray-700 py-3   shadow-inner"
                 />
-                {errors.password && <span className="text-red-400">Password is required</span>}
-
-                
-              
+                {errors.description && (
+                  <span className="text-red-400">Description is required</span>
+                )}
+              </div>
+              <div className="col-span-6">
+                <label
+                  htmlFor="priority"
+                  className="block text-sm font-medium "
+                >
+                  Priority
+                </label>
+                <select
+                  className="mt-1 w-full border-2 rounded-md border-gray-200 focus:outline-2 px-3 bg-slate-100 focus:outline-slate-400 text-sm text-gray-700 py-3 shadow-inner "
+                  id="selectmethod"
+                  defaultValue=""
+                  name="priority"
+                  {...register("priority", { required: true })}
+                >
+                  <option value="" disabled>
+                    Select Option
+                  </option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+                {errors.priority && (
+                  <span className="formError errorMssg">
+                    This field is required
+                  </span>
+                )}
+              </div>
+              <div className="col-span-6">
+                <label htmlFor="date" className="block text-sm font-medium ">
+                 Due Date
+                </label>
+                <Controller
+                  control={control}
+                  name="dueDate"
+                  render={({ field }) => (
+                    <DatePicker
+                    showIcon
+                      placeholderText="Select date"
+                      onChange={(date) => field.onChange(date)}
+                      selected={field.value} 
+                      className="ml-1 font-semiold"
+                    />
+                  )}
+                />
               </div>
 
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4 mx-auto">
-                <button
-                  type="submit"
-                  className="button-79"
-                >
+                <button type="submit" className="button-79">
                   Create
                 </button>
-              </div>
-              <div className="col-span-4">
-                <p className="mt-4  sm:mt-0 text">
-                  Dont have an account?
-                  <Link
-                    to={"/register"}
-                    className="text-primary ml-2 font-semibold underline"
-                  >
-                    Register
-                  </Link>
-                </p>
               </div>
             </form>
           </div>
