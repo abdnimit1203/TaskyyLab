@@ -1,8 +1,11 @@
+import BannerHome from "../components/Banner/BannerHome";
+import Benefits from "../components/Benefits/Benefits";
 
 const HomePage = () => {
     return (
         <div>
-            <h2>Home</h2>
+           <BannerHome/>
+           <Benefits/>
         </div>
     );
 };
