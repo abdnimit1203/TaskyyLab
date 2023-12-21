@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import LoginButton from "../Buttons/LoginButton";
 import useAuth from "../../hooks/useAuth";
 import LogOutButton from "../Buttons/LogOutButton";
@@ -59,7 +59,9 @@ const Navbar = () => {
             </label>
           </div>
           <div className="flex-1 px-2 mx-2 font-extrabold text-transparent text-xl sm:text-3xl bg-clip-text bg-gradient-to-r from-[#ff995f] to-[#facbcb]">
-            TaskyyLab
+            <Link to={'/'}>
+            <img src="/logo.PNG" alt="logo" className="w-32 border-b-2 border-red-500" />
+            </Link>
           </div>
           <div className="flex-none hidden lg:block ">
             <ul className="menu menu-horizontal gap-4 justify-center items-center">
@@ -70,18 +72,32 @@ const Navbar = () => {
           {user ? (
             <div className="avatar mx-6 online dropdown dropdown-end">
               <div tabIndex={0} role="button" className="w-12  rounded-full">
-                <img src={
-                  user?.photoURL? user.photoURL : "https://i.ibb.co/5x6DN2n/blank-dp.png"
-                }  className="border-4 border-primary rounded-full"/>
+                {user.photoURL ? (
+                  <img
+                    src={user?.photoURL}
+                    className="border-4 border-primary rounded-full"
+                    alt="userphoto"
+                  />
+                ) : (
+                  <img
+                    src={"https://i.ibb.co/5x6DN2n/blank-dp.png"}
+                    className="border-4 border-primary rounded-full"
+                    alt="userphoto"
+                  />
+                )}
                 <div
                   tabIndex={0}
                   className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 lg:w-96 flex text-center md:py-10 bg-gradient-to-tr from-rose-200 mt-5 border gap-3"
                 >
-              
-                 <p className="text-lg font-semibold">Hello, {user?.displayName}</p>
-                 <hr />
-                 <p className="font-bold">Email : {user?.email}</p>
-                 <button className="btn w-fit mx-auto btn-sm btn-outline rounded-2xl">Profile</button>
+                  <p className="text-lg font-semibold">
+                    Hello, {user?.displayName}
+                  </p>
+                  <hr />
+                  
+                  <p className="font-bold">Email : {user?.email}</p>
+                  <button className="btn w-fit mx-auto btn-sm btn-outline rounded-2xl">
+                    Profile
+                  </button>
                   <LogOutButton />
                 </div>
               </div>
