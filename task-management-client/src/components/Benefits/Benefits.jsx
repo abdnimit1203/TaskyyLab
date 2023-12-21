@@ -12,7 +12,7 @@ const Benefits = () => {
         Who Benefits from Our Platform?
       </h2>
 
-      <h3 className="font-semibold">
+      <h3 className="font-semibold text-lg text-center py-4">
         {" "}
         Discover how our task management website caters to the diverse needs of
         professionals across various industries:

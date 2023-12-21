@@ -56,8 +56,8 @@ const Dashboard = () => {
             </Link>
           </div>
           {dashLinks}
-          <hr  className="border-b-2 my-6 border-primary"/>
-          <Link className="button-79 text-xl ">HomePage</Link>
+          <hr  className="border-b-2 my-6 "/>
+          <Link to={'/'} className="button-79 text-xl ">HomePage</Link>
         </ul>
       </div>
     </div>

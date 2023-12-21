@@ -32,12 +32,12 @@ const TaskManagement = () => {
               console.log("task created and addded to database");
               toast.success(
                 "Task created successfully!",
-
-             
               )
               }
               reset()
-            })
+             
+            }
+            )
               
       }catch(err){
         toast.error(err.message);

@@ -140,7 +140,7 @@
   transition: all 100ms ease-out;
   z-index: -1;
 }
-.button-79:before {
+.button-79:after {
     background-color: rgba(19, 249, 153, 0.32);
     content: "";
     display: block;
@@ -152,7 +152,7 @@
     width: 100%;
     z-index: -2;
   }
-.button-79:after {
+.button-79:before {
   background-color: initial;
   background-image: linear-gradient(92.83deg, #39cc82 0, #4efc90 100%);
   bottom: 4px;
@@ -167,7 +167,7 @@
   z-index: -1;
 }
 
-.button-77:hover:not(:disabled):after {
+.button-77:hover:not(:disabled):before {
   bottom: 0;
   left: 0;
   right: 0;
@@ -175,7 +175,7 @@
   transition-timing-function: ease-in;
 }
 
-.button-79:hover:not(:disabled):after {
+.button-79:hover:not(:disabled):before {
   bottom: 0;
   left: 0;
   right: 0;
