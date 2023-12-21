@@ -1,6 +1,5 @@
-import Lottie, { useLottie } from "lottie-react";
+import Lottie from "lottie-react";
 import developer from "../../assets/developer.json";
-import loader from "../../assets/loader.json";
 import banker from "../../assets/banker.json";
 import Entrepreneurs from "../../assets/Entrepreneurs.json";
 import marketing from "../../assets/marketing.json";
@@ -8,7 +7,7 @@ const Benefits = () => {
 
  
   return (
-    <div className="p-6 lg:p-10 lg:py-16 flex flex-col  gap-6  bg-gradient-to-r to-orange-100 from-blue-100 rounded-xl my-4">
+    <div className="p-6 lg:p-10 lg:py-16 flex flex-col  gap-6  bg-gradient-to-r to-orange-100 from-pink-100 rounded-xl my-4">
       <h2 className="font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-purple-400 text-center  to-pink-600 border-b-4 w-fit mx-auto border-purple-400 pb-6 hover:scale-110 transition  duration-200">
         Who Benefits from Our Platform?
       </h2>
@@ -75,28 +74,13 @@ const Benefits = () => {
             Marketing Maestros 📈
             </h3>
             <p>
-            Our platform supports marketing professionals in coordinating tasks,
-        meeting deadlines to elevate your brands
+            Our platform supports marketing professionals in coordinating tasks to elevate your brands
             </p>
           </div>
         </article>
 
       </div>
-      <p>
-       
-        
-        <br />
-        For visionaries and startup enthusiasts, our platform is your strategic
-        ally. Organize ideas, plan initiatives, and track progress effortlessly.
-        Empower yourself to achieve your entrepreneurial goals with streamlined
-        task management.
-        <br />
-        Marketing Maestros 📈
-        <br />
-        Craft compelling campaigns and execute marketing strategies flawlessly.
-        Our platform supports marketing professionals in coordinating tasks,
-        meeting deadlines, and fostering collaboration to elevate your brands
-      </p>
+     
     </div>
   );
 };

@@ -18,7 +18,7 @@ const BannerHome = () => {
         </Link>
       </div>
       <div className="mx-auto">
-        <Lottie animationData={tasktodolottie} loop={true} className="w-96 lg:w-[60%] mx-auto" />
+        <Lottie animationData={tasktodolottie} loop={true} className="w-96  mx-auto" />
       </div>
     </div>
   );
