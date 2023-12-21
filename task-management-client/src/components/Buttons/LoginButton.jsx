@@ -4,7 +4,7 @@ import "./buttons.css"
 const LoginButton = () => {
   return (
     <div>
-      <Link className="font-bold button-77 lg:p-10">
+      <Link to={'/login'} className="font-bold button-77 lg:p-10">
         <span className="">Login </span><IoLogInSharp className="inline text-xl" />
       </Link>
     </div>

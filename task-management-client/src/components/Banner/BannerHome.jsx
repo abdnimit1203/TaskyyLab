@@ -13,7 +13,7 @@ const BannerHome = () => {
           platform empowers individuals to seamlessly manage their daily
           workload, providing a personalized hub for task mastery.
         </p>
-        <Link>
+        <Link to={'/login'}>
           <button className="button-77 button-78 ">Lets Explore</button>
         </Link>
       </div>
