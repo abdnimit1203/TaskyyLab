@@ -2,10 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import LoginButton from "../Buttons/LoginButton";
 import useAuth from "../../hooks/useAuth";
 import LogOutButton from "../Buttons/LogOutButton";
+import { BsFillChatTextFill } from "react-icons/bs";
 
 const Navbar = () => {
   const { user, loading } = useAuth();
-  console.log(user);
+  // console.log(user);
 
   const navlink = (
     <>
@@ -28,6 +29,31 @@ const Navbar = () => {
         }
       >
         Dashboard
+      </NavLink>
+      <NavLink
+        to="/blogs"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "active font-bold" : "font-bold"
+        }
+      >
+        Our Blogs
+      </NavLink>
+      <NavLink
+        to="/pricing"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "active font-bold" : "font-bold"
+        }
+      >
+        Pricing
+      </NavLink>
+      <NavLink
+        to="/chats"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "active font-bold" : "font-bold"
+        }
+      >
+      <BsFillChatTextFill className="inline mr-1 text-orange-600" />
+  Chats
       </NavLink>
     </>
   );
@@ -87,7 +113,7 @@ const Navbar = () => {
                 )}
                 <div
                   tabIndex={0}
-                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 lg:w-96 flex text-center md:py-10 bg-gradient-to-tr from-rose-200 mt-5 border gap-3"
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-fit lg:w-96 flex text-center md:py-10 bg-gradient-to-tr from-rose-200 mt-5 border gap-3"
                 >
                   <p className="text-lg font-semibold">
                     Hello, {user?.displayName}
@@ -95,9 +121,9 @@ const Navbar = () => {
                   <hr />
                   
                   <p className="font-bold">Email : {user?.email}</p>
-                  <button className="btn w-fit mx-auto btn-sm btn-outline rounded-2xl">
+                  {/* <button className="btn w-fit mx-auto btn-sm btn-outline rounded-2xl">
                     Profile
-                  </button>
+                  </button> */}
                   <LogOutButton />
                 </div>
               </div>
@@ -118,7 +144,7 @@ const Navbar = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-80 min-h-full bg-gradient-to-r to-[#f3f7ff] from-orange-100 gap-3 justify-center items-center">
+        <ul className="menu p-4 w-80 min-h-full bg-gradient-to-r to-[#f3f7ff] from-orange-100 gap-3 justify-center items-center text-xl space-y-4">
           {/* Sidebar content here */}
           {navlink}
           <LoginButton />

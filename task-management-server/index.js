@@ -68,10 +68,11 @@ app.post("/api/v1/users", async (req, res) => {
   });
 
 app.get("/api/v1/tasks", async (req, res) => {
-    const email = req.query.email;
+    const email = req.query.useremail;
+    const status = req.query.status;
     let query = {};
     if (email) {
-      query = { email: email };
+      query = { useremail: email };
     }
     const result = await tasksCollection.find(query).toArray();
     res.send(result);

@@ -2,6 +2,10 @@ import { MdDashboard } from "react-icons/md";
 import UserGreetings from "../components/DashboardComponents/UserGreetings";
 import TaskManagement from "../components/DashboardComponents/TaskManagement";
 import { Link, NavLink } from "react-router-dom";
+import { IoSettingsSharp } from "react-icons/io5";
+import { FaUser } from "react-icons/fa";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+import LogOutButton from "../components/Buttons/LogOutButton";
 
 const Dashboard = () => {
   const dashLinks = (
@@ -9,10 +13,29 @@ const Dashboard = () => {
       <NavLink
         to="/dashboard"
         className={({ isActive, isPending }) =>
-          isPending ? "pending " : isActive ? "active font-bold btn rounded-2xl bg-gradient-to-r text-white from-purple-400 text-xl to-pink-600" : ""
+          isPending ? "pending " : isActive ? "active font-bold btn rounded-2xl bg-gradient-to-r text-white from-purple-400  to-pink-600" : "btn my-2 hover:bg-gradient-to-r hover:from-purple-400 hover:to-pink-600 hover:text-white"
         }
       >
-        Dashboard
+       <MdOutlineSpaceDashboard />
+ Dashboard
+      </NavLink>
+      <NavLink
+        to="/"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending " : isActive ? "active font-bold btn rounded-2xl bg-gradient-to-r text-white from-purple-400  to-pink-600" : "btn my-2 hover:bg-gradient-to-r hover:from-purple-400 hover:to-pink-600 hover:text-white"
+        }
+      >
+       <FaUser />
+ Profile
+      </NavLink>
+      <NavLink
+        to="/"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending " : isActive ? "active font-bold btn rounded-2xl bg-gradient-to-r text-white from-purple-400  to-pink-600" : "btn my-2 hover:bg-gradient-to-r hover:from-purple-400 hover:to-pink-600 hover:text-white"
+        }
+      >
+       <IoSettingsSharp />
+ Settings
       </NavLink>
     </>
   );
@@ -57,7 +80,11 @@ const Dashboard = () => {
           </div>
           {dashLinks}
           <hr  className="border-b-2 my-6 "/>
-          <Link to={'/'} className="button-79 text-xl ">HomePage</Link>
+          <Link to={'/'} className="btn btn-outline  ">HomePage</Link>
+          <div className="w-fit mx-auto">
+
+          <LogOutButton/>
+          </div>
         </ul>
       </div>
     </div>

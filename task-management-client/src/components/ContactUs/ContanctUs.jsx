@@ -14,7 +14,7 @@ const ContanctUs = () => {
             <Lottie animationData={contactlottie} loop={true} />
           </div>
 
-          <div className="rounded-lg p-8 shadow-md border lg:col-span-3 lg:p-12 hover:scale-95 transition duration-500 shadow-sky-100">
+          <div className="rounded-lg p-8 shadow-md border lg:col-span-3 lg:p-12 hover:scale-95 transition duration-500 shadow-sky-100 glass bg-purple-200">
             <form action="" className="space-y-4">
               <div>
                 <label className="sr-only" htmlFor="name">
@@ -56,7 +56,7 @@ const ContanctUs = () => {
               <div className="mt-4">
                 <button
                   type="submit"
-                  className="button-77 button-79"
+                  className=" button-79"
                 >
                   Send Enquiry
                 </button>

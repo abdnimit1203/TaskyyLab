@@ -5,6 +5,10 @@ import HomePage from "../pages/HomePage";
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 import Register from "../pages/Register";
+import Blogs from "../pages/Blogs";
+import Pricing from "../pages/Pricing";
+import Chats from "../pages/Chats";
+import PrivateRoute from "./PrivateRoute";
 
 export const router =  createBrowserRouter([
     {
@@ -15,6 +19,18 @@ export const router =  createBrowserRouter([
             {
                 path: '/',
                 element: <HomePage/>
+            },
+            {
+                path: '/blogs',
+                element: <Blogs/>
+            },
+            {
+                path: '/pricing',
+                element: <Pricing/>
+            },
+            {
+                path: '/chats',
+                element: <Chats/>
             },
             
         ]
@@ -30,6 +46,6 @@ export const router =  createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <Dashboard/>
+        element:<PrivateRoute><Dashboard/></PrivateRoute> 
     }
 ])

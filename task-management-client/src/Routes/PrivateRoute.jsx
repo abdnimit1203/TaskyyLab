@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import { Navigate, useLocation } from "react-router-dom";
+import Lottie from "lottie-react";
+import loader from "../assets/loader.json";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -9,11 +11,7 @@ const PrivateRoute = ({ children }) => {
   if (loading) {
     return (
       <div className="min-h-screen flex justify-center items-center" >
-        <img
-          src="/assets/home/loading2.png"
-          alt="loader"
-          className="motion-safe:animate-spin w-64 mx-auto "
-        />
+        <Lottie animationData={loader} loop={true} className="w-72 md:w-96"/>
       </div>
     );
   } else {
