@@ -4,7 +4,7 @@ const cors = require('cors');
 const jwt = require("jsonwebtoken");
 require('dotenv').config()
 const tasklist = require('./tasklist.json');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -82,6 +82,23 @@ app.post("/api/v1/tasks", async (req, res) => {
     const result = await tasksCollection.insertOne(task)
     res.send(result);
   });
+app.delete("/api/v1/tasks/:id", async (req, res) => {
+    const id = req.params.id
+    const query = {_id : new ObjectId(id) }
+    const result = await tasksCollection.deleteOne(query)
+    res.send(result);
+  });
+  app.patch("/api/v1/tasks", async (req, res) => {
+    const id = req.query.id;
+    const status = req.query.status;
+    const filter = {_id: new ObjectId(id)};
+    const updateDoc = {
+      $set : {status: status}
+    } 
+    const result = await usersCollection.updateOne(filter,updateDoc);
+    res.send(result);
+  });
+
 
 
 
