@@ -62,7 +62,7 @@ const Register = () => {
                       { id: toastId }
                     );
 
-                    navigate(location?.state || "/");
+                    navigate(location?.state || "/dashboard");
                   }
                 });
               })

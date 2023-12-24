@@ -3,30 +3,38 @@ import PropTypes from "prop-types";
 import { useDrag } from "react-dnd";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { BiEditAlt } from "react-icons/bi";
+
 import toast from "react-hot-toast";
-const TodoCard = ({ task ,refetch}) => {
-  const { _id, title, description, priority, status } = task;
+const TodoCard = ({ task, refetch }) => {
+  const { _id, title, description, priority, status,dueDate } = task;
+  const date = new Date(dueDate).toDateString()
   const axiosPublic = useAxiosPublic();
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "todo",
-    item: { id: _id },
+    item: { id: _id, status: status },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
   }));
   // console.log(isDragging,_id);
 
+  // handle EDit
+  const handleEdit = (id) =>{
+      
+    console.log("edited :" , id,dueDate );
+  }
   // handle remove
 
   const handleRemove = (id) => {
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to get the Task!",
+      text: "You won't be able to get the task!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, remove review",
+      confirmButtonText: "Yes, remove task",
     }).then((result) => {
       if (result.isConfirmed) {
         axiosPublic
@@ -46,6 +54,10 @@ const TodoCard = ({ task ,refetch}) => {
       }
     });
   };
+
+
+  
+
   return (
     <article
       ref={drag}
@@ -56,13 +68,20 @@ const TodoCard = ({ task ,refetch}) => {
       <div className="rounded-[10px] bg-white p-4  sm:p-6   ">
         <div className="flex justify-between border-b-2 pb-2 ">
           <h3 className="mt-0.5 text-lg font-medium text-gray-900">{title}</h3>
-
-          <button
-            onClick={() => handleRemove(_id)}
-            className="btn btn-circle btn-error btn-sm"
-          >
-            <ImCross className="inline text-xl text-white" />
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={() => handleEdit(_id)}
+              className="btn btn-circle btn-warning btn-sm"
+            >
+              <BiEditAlt className="inline text-xl " />
+            </button>
+            <button
+              onClick={() => handleRemove(_id)}
+              className="btn btn-circle btn-error btn-sm"
+            >
+              <ImCross className="inline text-xl text-white" />
+            </button>
+          </div>
         </div>
         <div>
           <p>{description}</p>
@@ -73,8 +92,8 @@ const TodoCard = ({ task ,refetch}) => {
           </span>
         </div>
         <div className="mt-4 flex flex-wrap gap-1 ">
-          <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 ">
-            {status}
+          <span className="whitespace-nowrap rounded-full border-b-2 border-purple-100 px-2.5 py-0.5 ">
+          <span className="text-rose-600">Due: </span> {date}
           </span>
         </div>
       </div>

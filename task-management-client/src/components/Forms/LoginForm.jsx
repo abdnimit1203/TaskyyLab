@@ -35,7 +35,7 @@ if(!user){
 
         { id: toastId }
       );
-      navigate(location?.state ? location.state : "/");
+      navigate(location?.state ? location.state : "/dashboard");
     })
   }catch(err){
     toast.error(err.message, { id: toastId });

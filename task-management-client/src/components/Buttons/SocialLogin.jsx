@@ -37,7 +37,7 @@ const SocialLogin = () => {
             { id: toastId2 }
           );
 
-          navigate(location?.state || "/");
+          navigate(location?.state || "/dashboard");
       }
       
       )

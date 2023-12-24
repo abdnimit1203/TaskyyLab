@@ -2,6 +2,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { Controller, useForm } from "react-hook-form";
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import { usePreview } from 'react-dnd-preview'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAuth from "../../hooks/useAuth";
@@ -10,12 +11,14 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 // import { useEffect, useState } from "react";
 import useTaskList from "../../hooks/useTaskList";
 import TaskList from "./TaskList";
+import { TouchBackend } from 'react-dnd-touch-backend';
 
 const TaskManagement = () => {
-
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const Backend = isMobile ? TouchBackend : HTML5Backend; 
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-  const [data, isLoading, refetch] = useTaskList(user?.email)
+  const [data, , refetch] = useTaskList(user?.email)
  
   const {
     register,
@@ -42,7 +45,16 @@ const TaskManagement = () => {
       toast.error(err.message);
     }
   };
-
+ 
+  const MyPreview = () => {
+    const preview = usePreview()
+    if (!preview.display) {
+      return null
+    }
+    const {itemType, item, style} = preview;
+    return <div className="item-list__item border-4" style={style}>{itemType}</div>
+  }
+  
   // const [data, setData] = useState([]);
 
   // useEffect(() => {
@@ -53,7 +65,7 @@ const TaskManagement = () => {
  
 
   return (
-    <DndProvider backend={HTML5Backend}>
+    <DndProvider backend={Backend}>
     <div className="p-6 lg:p-10 lg:py-16 flex flex-col">
       <div className="flex justify-between bg-[#fff] glass rounded-xl p-3 items-center mb-4">
         <h2 className="text-xl lg:text-2xl font-bold">Task Management</h2>
@@ -172,13 +184,14 @@ const TaskManagement = () => {
         </dialog>
       </div>
       <div
-        className="grid grid-cols-2 lg:grid-cols-3
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
         gap-6 "
       >
         <div className="bg-[#f6fafa] rounded-l-xl p-4">
           <h3 className="pb-4 text-xl font-bold">To Do Task</h3>
          
          <TaskList tasks={data?.filter(task=> task.status === "todo") } Status={"todo"} refetch={refetch}></TaskList>
+         <MyPreview />
         </div>
         <div className="  p-4 bg-sky-50">
           <h3 className="pb-4 text-xl font-bold">Ongoing Task</h3>
@@ -191,6 +204,7 @@ const TaskManagement = () => {
         </div>
       </div>
     </div>
+   
     </DndProvider>
   );
 };

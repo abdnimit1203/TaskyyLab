@@ -81,7 +81,7 @@ const Dashboard = () => {
           {dashLinks}
           <hr  className="border-b-2 my-6 "/>
           <Link to={'/'} className="btn btn-outline  ">HomePage</Link>
-          <div className="w-fit mx-auto">
+          <div className="w-fit mx-auto my-4">
 
           <LogOutButton/>
           </div>
