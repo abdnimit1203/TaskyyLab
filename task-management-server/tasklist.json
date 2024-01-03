@@ -1,27 +1,5 @@
 [
     {
-        "id": 1,
-        "title" : "Learn Mongoose",
-        "description": "Go to ph hero early job placement videos and look for backend folder struturing with mongoose",
-        "priority": "high",
-        "userEmail": "abdullah.ibneali152pro@gmail.com"
-
-    },
-    {
-        "id": 2,
-        "title" : "Start Next Js Project",
-        "description": "Go to ph hero milestone 13 and learn it",
-        "priority": "high",
-        "userEmail": "abdullah.ibneali152pro@gmail.com"
-
-    },
-    {
-        "id": 3,
-        "title" : "Use BD react component : KEEP ",
-        "description": "Go to ph hero early job placement videos and look for backend folder struturing with mongoose",
-        "priority": "high",
-        "userEmail": "abdullah.ibneali152pro@gmail.com"
-
+        "message": "You are connected"
     }
 ]
-
