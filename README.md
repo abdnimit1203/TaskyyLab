@@ -5,5 +5,5 @@
 
 
 Another fun project.
-**Main Feature** : Explore the Dashboard
-You can create a profile and then add tasks on your **Dashboard**. You can easily drag and drop tasks from: todo <-> ongoing <-> completed Task box.
+**Main Feature** : Explore the Dashboard . There is **Drag and Drop** feature there. <br><br>
+You can create a profile and then add tasks on your **Dashboard**.<br> You can easily drag and drop tasks from: todo <-> ongoing <-> completed Task box.
